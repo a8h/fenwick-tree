@@ -19,10 +19,10 @@ class fenwick():
             r -= r & ~(r - 1)
         return s
 
-    def add(self, pos, val):
-        while pos < len(self.tree):
-            self.tree[pos] += val
-            pos += pos & ~(pos - 1)
+    def add(self, index, val):
+        while index < len(self.tree):
+            self.tree[index] += val
+            index += index & ~(index - 1)
 
     def update(self, pos, val):
         self.add(pos, val - self.tree[pos])
@@ -30,7 +30,7 @@ class fenwick():
     def query_sum_range(self, l, r):
         if l == 1:
             return self.sum(r)
-        return self.sum(r) - self.sum(max(l - 1,1))
+        return self.sum(r) - self.sum(l - 1)
 
 def test():
     f = fenwick([1,3,4,8,6,1,4,2])
